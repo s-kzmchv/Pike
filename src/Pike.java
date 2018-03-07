@@ -7,7 +7,7 @@ import static java.lang.Math.pow;
 //  Ai = Ai-55 + Ai-24 mod mod
 //  Bi = Bi-57 + Bi-7 mod mod
 //  Ci = Ci-58 + Ci-19 mod mod
-//  zi = Ai/mod zi+1 = Bi/mod zi+2 = Ci/mod
+//  zi = Ai/mod    zi+1 = Bi/mod     zi+2 = Ci/mod
 public class Pike {
     private ArrayList<Long> A = new ArrayList<>();
     private ArrayList<Long> B = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Pike {
         float Mat = M(Z, qt);
         D(Z, qt, Mat);
         equability(Z);
-        makeTable(Z);
+        makeCorrelations(Z);
     }
 
     public float M(ArrayList<Float> array, int T) {
@@ -110,15 +110,15 @@ public class Pike {
         for (int i = 0; i < array.size() - s; i++) {
             sum += array.get(i) * array.get(i + s);
         }
-        float pre = (float)12 / (array.size() - s);
-        R = (pre * sum) - 3;
+        float koef = (float)12 / (array.size() - s);
+        R = (koef * sum) - 3;
         return R;
     }
 
-    public String makeTable(ArrayList<Float> array){
+    public String makeCorrelations(ArrayList<Float> array){
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i < 8; i++) {
-            sb.append("This s = " + i + " -> R = " + R(array, i) + "\n");
+        for (int i = 1; i < 10; i++) {
+            sb.append("s = " + i + "  R = " + R(array, i) + "\n");
         }
         System.out.println(sb.toString());
         return sb.toString();
@@ -162,6 +162,6 @@ public class Pike {
         Pike m = new Pike();
 
         m.makeSomeNumbers(10000);
-        System.out.println(m);
+       // System.out.println(m);
     }
 }
